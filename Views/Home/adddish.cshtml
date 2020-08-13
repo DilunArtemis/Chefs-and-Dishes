@@ -1,0 +1,74 @@
+@model NewDishModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chefs and Dishes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+
+        <div class="row">
+            <h1 class="col-sm-12 text-center">Add a Dish!</h1>
+        </div>
+
+        <p><a href = "allchefs"> Home </a></p> 
+
+        <div class="row">
+            <form class="col-sm-8 offset-sm-2" asp-action="adddish" asp-controller="Home" method="post">
+            <div class="form-group row">
+                <span class="col-sm-12 text-danger" asp-validation-for="Name"></span>
+                <label asp-for="Name" class="col-sm-4"></label>
+                <input asp-for="Name" class="col-sm-8 form-control">
+            </div>
+            
+            <div class="form-group row">
+                <span class="col-sm-12 text-danger" asp-validation-for="Calories"></span>
+                <label asp-for="Calories" class="col-sm-4"></label>
+                <input asp-for="Calories" class="col-sm-8 form-control">
+            </div>
+
+            <div class="form-group row">
+                <span asp-validation-for="Tastiness"></span>
+                <label asp-for="Tastiness" class="col-sm-2 col-form-label "></label>
+                <div class="col-sm-10">
+                    <select class="custom-select mr-sm-2"  asp-for="Tastiness" id="inlineFormCustomSelect">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <span asp-validation-for="ChefId"></span>
+                <label asp-for="ChefId" class="col-sm-2 col-form-label "></label>
+                <div class="col-sm-10">
+                    <select class="custom-select mr-sm-2"  asp-for="ChefId" id="inlineFormCustomSelect">
+                        @foreach (var creator in Model.allchefs)
+                        {
+                            <option value=@creator.ChefId> @creator.FirstName  @creator.LastName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+                <div class="form-group row">
+                    <span class="col-sm-12 text-danger" asp-validation-for="Description"></span>
+                    <label asp-for="Description" class="col-sm-4"></label>
+                    <input asp-for="Description" class="col-sm-8 form-control">
+                </div>
+
+                <div class = "form-group-row">
+                    <input type = "submit" value = "Add Dish" class = "col-sm-4 btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

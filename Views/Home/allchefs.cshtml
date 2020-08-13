@@ -1,0 +1,41 @@
+@model List<Chef>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chefs and Dishes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div class = "row">
+        <h1 class = "col-sm-12 text-center"> Chefs | <a href = "alldishes">Dishes</a> </h1>
+        
+        <h3>Check out our roster of chefs!</h3>
+    </div>
+    
+    <p><a href = "addchef"> Add a Chef </a></p>
+    
+    <div class="row">
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Age</th>
+                <th># of Dishes</th>
+            </thead>
+            <tbody>
+                @foreach(Chef trait in Model)
+                {
+                    int age = DateTime.Today.Year - trait.DateOfBirth.Year;
+                    <tr>
+                        <td>@trait.FirstName @trait.LastName</td>
+                        <td>@age</td>
+                        <td>@trait.ThisChefsDishes.Count()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
