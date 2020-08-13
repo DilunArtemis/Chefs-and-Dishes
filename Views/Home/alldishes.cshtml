@@ -10,36 +10,39 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
+
     <div class = "row">
-        <h1 class = "col-sm-12 text-center"><a href="/allchefs"> Chefs </a>  | Dishes</h1>
+        <h1 class = "col-sm-12 text-center bg-info text-light"><a href="/allchefs"> Chefs </a>  | Dishes</h1>
+        
+        <div class = "container">
+            <h3>Yum, look at our tasty dishes!</h3>
+            <p><a href = "adddish"> Add a Dish </a></p> 
 
-        <h3>Yum, look at our tasty dishes!</h3>
+            <div class="row">
+                <table class="table table-striped">
+                    <thead class = "thead-dark">
+                        <th>Name</th>
+                        <th>Chef</th>
+                        <th>Calories</th>
+                        <th>Tastiness</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody>
+                        @foreach(Dish meal in Model)
+                        {
+                            <tr>
+                                <td>@meal.Name</td>
+                                <td>@meal.Creator.FirstName @meal.Creator.LastName</td>
+                                <td>@meal.Calories</td>
+                                <td>@meal.Tastiness</td>
+                                <td>@meal.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <p><a href = "adddish"> Add a Dish </a></p> 
-
-    <div class="row">
-        <table class="table">
-            <thead>
-                <th>Name</th>
-                <th>Chef</th>
-                <th>Calories</th>
-                <th>Tastiness</th>
-                <th>Description</th>
-            </thead>
-            <tbody>
-                @foreach(Dish meal in Model)
-                {
-                    <tr>
-                        <td>@meal.Name</td>
-                        <td>@meal.Creator.FirstName @meal.Creator.LastName</td>
-                        <td>@meal.Calories</td>
-                        <td>@meal.Tastiness</td>
-                        <td>@meal.Description</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
 </body>
 </html>
